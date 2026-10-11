@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Create Account</title>
+    
+    <!-- Firebase App and Auth CDN Script Tags -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .signup-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .btn:hover { background-color: #218838; }
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .login-link a { color: #007bff; text-decoration: none; }
+        .login-link a:hover { text-decoration: underline; }
+        #error-msg { color: #dc3545; font-size: 13px; text-align: center; margin-top: 10px; }
+        #success-msg { color: #28a745; font-size: 13px; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <h2>Create Student Account</h2>
+        
+        <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="student@example.com" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="password">Password (min. 6 characters)</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="input-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="••••••••" required>
+        </div>
+
+        <button class="btn" onclick="registerStudent()">Create Account</button>
+
+        <p id="error-msg"></p>
+        <p id="success-msg"></p>
+
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log In here</a>
+        </div>
+    </div>
+
+    <script>
+        // Your Firebase Configuration
+     const firebaseConfig = {
+            apiKey: "AIzaSyAb9NAEFQGFjFgNitEj0MR4Y86q-fTMqmg",
+            authDomain: "easymaths-da0f2.firebaseapp.com",
+            projectId: "easymaths-da0f2",
+            storageBucket:"easymaths-da0f2.firebasestorage.app",
+            messagingSenderId: "868035055914",
+            appId: "1:868035055914:web:5ad32269c8b349be8cce53"
+        };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Register Student Function
+        function registerStudent() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMsg = document.getElementById('error-msg');
+            const successMsg = document.getElementById('success-msg');
+
+            // Reset messages
+            errorMsg.innerText = '';
+            successMsg.innerText = '';
+
+            // Input Validation
+            if (!email || !password || !confirmPassword) {
+                errorMsg.innerText = "Please fill in all fields.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMsg.innerText = "Passwords do not match!";
+                return;
+            }
+
+            if (password.length < 6) {
+                errorMsg.innerText = "Password must be at least 6 characters long.";
+                return;
+            }
+
+            // Create account with Firebase
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    successMsg.innerText = "Account created successfully! Redirecting...";
+                    setTimeout(() => {
+                        window.location.href = "../index.html"; // Redirect to homepage
+                    }, 1500);
+                })
+                .catch((error) => {
+                    errorMsg.innerText = error.message;
+                });
+        }
+    </script>
+</body>
+</html>

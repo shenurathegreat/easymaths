@@ -4,35 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Learning Portal - Free Tutes, Short Notes & Past Papers (Grades 6 to 11)</title>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script>
-    // Your Firebase Configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSy...", 
-        authDomain: "easymaths-da0f2.firebaseapp.com",
-        projectId: "easymaths-da0f2",
-        storageBucket: "easymaths-da0f2.appspot.com",
-        messagingSenderId: "868035055914",
-        appId: "1:868035055914:web:..."
-    };
+    
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script>
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAb9NAEFQGFjFgNitEj0MR4Y86q-fTMqmg",
+            authDomain: "easymaths-da0f2.firebaseapp.com",
+            projectId: "easymaths-da0f2",
+            storageBucket: "easymaths-da0f2.firebasestorage.app",
+            messagingSenderId: "868035055914",
+            appId: "1:868035055914:web:5ad32269c8b349be8cce53"
+        };
 
-    firebase.initializeApp(firebaseConfig);
-
-    // Check if user is logged in
-    firebase.auth().onAuthStateChanged((user) => {
-        if (!user) {
-            // If NOT logged in, redirect to login page
-            window.location.href = "login.html"; // Adjust path if login.html is in a folder
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
         }
-    });
-</script>
+
+        // Check if user is logged in
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                // If NOT logged in, redirect to login page
+                window.location.href = "login.html"; 
+            }
+        });
+    </script>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Student Learning Portal is a free educational platform for Grades 6 to 11 students. Access a complete library of Mathematics past papers, Ordinary Level (O/L) model term tests, chapter-by-chapter tutorials, and concise revision short notes. Download high-quality PDF study materials to master core concepts and score top marks in school exams!">
     <meta name="keywords" content="Grade 6 Maths, Grade 7 Science, Grade 8 Tutes, Grade 9 Notes, Grade 10 O/L Maths, Grade 11 Past Papers, Sri Lanka School Papers, Free PDF Downloads">
     
-    <!-- Google AdSense Code Snippet (Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your AdSense Publisher ID) -->
+    <!-- Google AdSense Code Snippet -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
     <style>
@@ -156,15 +161,6 @@
         }
         .btn:hover { background: var(--primary-dark); }
         
-        .ad-box {
-            background: #ffffff;
-            border: 1px dashed #cbd5e1;
-            padding: 15px;
-            text-align: center;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
         footer {
             background: #ffffff;
             border-top: 1px solid var(--border-color);
@@ -180,7 +176,7 @@
 
     <header>
         <h1>Student Learning Portal</h1>
-        <p>Free Mathematics  Past Papers, Tutes & Revision Short Notes</p>
+        <p>Free Mathematics Past Papers, Tutes & Revision Short Notes</p>
     </header>
 
     <div class="container">
@@ -190,18 +186,6 @@
             <h2>Welcome Students & Teachers!</h2>
             <p>Access structured chapter tutorials, revision short notes, model term tests, and official past papers organized neatly from Grade 6 up to Grade 11 (O/L).</p>
         </div>
-
-        <!--Ad Placement Header 
-        <div class="ad-box">
-            <!--AdSense Responsive Ad Block
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>-->
 
         <h2 class="section-title">Select Your Grade Level</h2>
 
@@ -250,7 +234,6 @@
                     <h3>Grade 9</h3>
                     <ul>
                         <li>Geometry & Algebra Notes</li>
-                       
                         <li>Model Assessment Papers</li>
                     </ul>
                 </div>
@@ -263,7 +246,6 @@
                     <h3>Grade 10 (O/L Prep)</h3>
                     <ul>
                         <li>O/L Mathematics Syllabus</li>
-                     
                         <li>Term Test Model Papers</li>
                     </ul>
                 </div>
@@ -277,7 +259,7 @@
                     <ul>
                         <li>O/L Maths Past Papers</li>
                         <li>Revision Short Notes</li>
-                                          </ul>
+                    </ul>
                 </div>
                 <a href="pages/grade11.html" class="btn">Explore Grade 11</a>
             </div>
@@ -292,3 +274,4 @@
 
 </body>
 </html>
+ 
